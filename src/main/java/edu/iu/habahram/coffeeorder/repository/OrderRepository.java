@@ -11,12 +11,24 @@ public class OrderRepository {
             case "dark roast":
                 beverage = new DarkRoast();
                 break;
+            case "house blend":
+                beverage = new HouseBlend();
+                break;
+            case "espresso":
+                beverage = new Espresso();
+                break;
         }
         if (beverage == null) {
             throw new Exception("Beverage type '%s' is not valid!".formatted(order.beverage()));
         }
         for(String condiment : order.condiments()) {
             switch (condiment.toLowerCase()) {
+                case "whip":
+                    beverage = new Whip(beverage);
+                    break;
+                case "soy":
+                    beverage = new Soy(beverage);
+                    break;
                 case "milk":
                    beverage = new Milk(beverage);
                    break;
